@@ -3,7 +3,7 @@
     <div>bar</div>
     <div>
       <!-- <p v-if="id">{{id}}</p> -->
-      <p>{{id}}</p>
+      <p>{{$route.params.id}}</p>
       <p>hellobar</p>
     </div>
   </div>

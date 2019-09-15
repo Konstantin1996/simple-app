@@ -1,7 +1,9 @@
 <template>
   <div id="app">
     <!-- <HelloWorld msg="Welcome to Your Vue.js App"/> -->
+    <h1>Route matching</h1>
     <div class="links">
+      <router-link to="/">Go to Main</router-link>
       <router-link to="/foo">Go to Foo</router-link>
       <router-link to="/bar">Go to Bar</router-link>
       <router-link :to="{name: 'BarWithId',params: {id}}">Go to Bar with Id</router-link>
