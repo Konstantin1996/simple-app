@@ -1,51 +1,56 @@
 <template>
-  <div id="app">
-    <!-- <HelloWorld msg="Welcome to Your Vue.js App"/> -->
-    <h1>Route matching</h1>
-    <div class="links">
-      <router-link to="/">Go to Main</router-link>
-      <router-link to="/foo">Go to Foo</router-link>
-      <router-link to="/bar">Go to Bar</router-link>
-      <router-link :to="{name: 'BarWithId',params: {id}}">Go to Bar with Id</router-link>
+  <v-app>
+    <div>
+      <v-navigation-drawer fixed v-model="sideNav">
+        <v-list-item-group color="primary">
+          <v-list-item :key="item.title" v-for="item in menuItems">
+            <v-list-item-icon>
+              <v-icon>{{item.icon}}</v-icon>
+            </v-list-item-icon>
+            <v-list-item-content>
+              <v-list-item-title>{{item.title}}</v-list-item-title>
+            </v-list-item-content>
+          </v-list-item>
+        </v-list-item-group>
+      </v-navigation-drawer>
+
+      <v-toolbar class="teal lighten-3">
+        <v-app-bar-nav-icon class="d-sm-none" @click="onClick"></v-app-bar-nav-icon>
+        <v-toolbar-title>DevMeetUp</v-toolbar-title>
+        <v-spacer></v-spacer>
+        <v-toolbar-items :key="item.title" v-for="item in menuItems">
+          <v-btn class="d-none d-sm-flex d-md-flex d-lg-flex" text>
+            <v-icon>{{item.icon}}</v-icon>
+            {{item.title}}
+          </v-btn>
+        </v-toolbar-items>
+      </v-toolbar>
     </div>
-    <router-view></router-view>
-  </div>
+    <main>
+      <router-view></router-view>
+    </main>
+  </v-app>
 </template>
 
 <script>
-import Bar from "./components/Bar";
 export default {
-  name: "app",
+  name: "App",
   components: {},
-  data() {
-    return {
-      id: 1234
-    };
+  data: () => ({
+    sideNav: false,
+    menuItems: [
+      { icon: "mdi-human", title: "View meetups" },
+      { icon: "mdi-contacts", title: "Organize meetup" },
+      { icon: "mdi-face", title: "Profile" },
+      { icon: "mdi-arrow-right-box", title: "Sign up" },
+      { icon: "mdi-arrow-left-box", title: "Sign in" }
+    ]
+  }),
+
+  methods: {
+    onClick() {
+      this.sideNav = !this.sideNav;
+    }
   }
 };
 </script>
-
-<style>
-#app {
-  font-family: "Avenir", Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-
-html,
-body {
-  height: 100%;
-}
-.links {
-  display: flex;
-  justify-content: center;
-}
-
-.links > a {
-  /* display: inline-block; */
-  margin: auto;
-}
-</style>
