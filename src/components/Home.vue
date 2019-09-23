@@ -1,6 +1,6 @@
 <template>
   <v-container fluid>
-    <v-flex class="mx-auto" lg8 xs12 >
+    <v-flex class="mx-auto my-10" lg8 xs12 >
       <v-layout row class="brown ma-0 pa-0">
         <v-carousel dark>
           <v-carousel-item v-for="(meetup, i) in meetups" :key="i" :src="meetup.src">
