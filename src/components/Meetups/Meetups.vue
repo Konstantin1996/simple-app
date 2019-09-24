@@ -1,20 +1,22 @@
 <template>
   <v-container>
-    <v-layout >
-      <v-flex class="mx-auto" xs12 lg8>
+    <v-layout>
+      <v-flex class="mx-auto" xs12>
         <v-card class="d-flex mt-3 purple grey lighten-3">
+          <v-flex xs4 sm5 lg3>
           <v-img
             height="200px"
-            width="200px"
             cover
-            src="https://dlqxt4mfnxo6k.cloudfront.net/dsldhomes.com/aHR0cHM6Ly9zMy5hbWF6b25hd3MuY29tL2J1aWxkZXJjbG91ZC8wYmIyMGE2ODdkMjgzZmY5OTg3YTg5NWQ5MmVlMDIyZS5qcGVn/exact/2000/1125"
+            src="https://wp.zillowstatic.com/streeteasy/2/shutterstock_695847865-bcd2e5.jpg"
           ></v-img>
-          <div class="d-flex flex-column">
+          </v-flex>
+          <v-flex class="d-flex flex-column " xs8 sm7 lg9>
+            <v-card-title>Title</v-card-title>
             <v-card-text>Lorem ipsum dolor sit amet consectetur adipisicing elit. Omnis enim nobis error veniam. Atque vitae provident dicta officiis, quidem in.</v-card-text>
-            <v-card-actions class="align-self-end mx-10">
+            <v-card-actions class="align-self-end mt-auto">
               <v-btn>Show details</v-btn>
             </v-card-actions>
-          </div>
+          </v-flex>
         </v-card>
       </v-flex>
     </v-layout>
