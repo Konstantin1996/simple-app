@@ -24,28 +24,10 @@
 export default {
   name: "Home",
 
-  data() {
-    return {
-      meetups: [
-        {
-          src:
-            "https://wp.zillowstatic.com/streeteasy/2/shutterstock_695847865-bcd2e5.jpg",
-          id: "1",
-          title: "Meetup NY"
-        },
-        {
-          src:
-            "http://services.travelsavers.com/AMGService.svc/REST/GetImage?ImageID=4688592b-22a3-e911-be17-782bcb66a2f2&Width=450",
-          id: "2",
-          title: "Meetup California"
-        },
-        {
-          src: "https://www.akdmc.com/media/2822/russia.jpg",
-          id: "3",
-          title: "Meetup Russia"
-        }
-      ]
-    };
+  computed: {
+    meetups() {
+      return this.$store.getters.loadedMeetups;
+    }
   },
 
   methods: {

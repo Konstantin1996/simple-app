@@ -4,14 +4,14 @@
       <v-flex>
         <v-card>
           <v-card-title>
-            title
+            {{meetup.title}}
           </v-card-title>
           <v-img
             height="400px"
             cover
-            src="https://wp.zillowstatic.com/streeteasy/2/shutterstock_695847865-bcd2e5.jpg"
+            :src="meetup.src"
           ></v-img>
-          <v-card-text>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Cum in adipisci nesciunt temporibus at optio dolor possimus ipsum, officia amet!</v-card-text>
+          <v-card-text>{{meetup.desc}}</v-card-text>
           <v-card-actions>
             <v-btn>Register</v-btn>
             <v-spacer></v-spacer>
@@ -24,7 +24,20 @@
 </template>
 
 <script>
-export default {};
+export default {
+  name: 'Meetup',
+
+  props: {
+    id: String
+  },
+
+  computed: {
+    meetup() {
+      return this.$store.getters.loadMeetup(this.id)
+    }
+  }
+
+};
 </script>
 
 <style>

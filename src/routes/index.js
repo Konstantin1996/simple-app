@@ -16,7 +16,8 @@ const routes = [
   { path: '/', name: 'Home', component: Home },
   { path: '/meetups', name: 'Meetups', component: Meetups },
   { path: '/meetups/create', name: 'CreateMeetup', component: CreateMeetup },
-  { path: '/meetups/:id', name: 'Meetup', component: Meetup},
+  // we can use dynamic params as props, to do it we need to add props param
+  { path: '/meetups/:id', props: true, name: 'Meetup', component: Meetup },
   { path: '/profile', name: 'Profile', component: Profile },
   { path: '/signin', name: 'Signin', component: Signin },
   { path: '/signup', name: 'Signup', component: Signup },
