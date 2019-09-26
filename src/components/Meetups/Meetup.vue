@@ -9,7 +9,7 @@
           <v-img
             height="400px"
             cover
-            :src="meetup.src"
+            :src="meetup.imageURL"
           ></v-img>
           <v-card-text>{{meetup.desc}}</v-card-text>
           <v-card-actions>
