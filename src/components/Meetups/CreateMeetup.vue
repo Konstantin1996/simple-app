@@ -42,9 +42,20 @@
                 name="description"
                 label="Description"
                 id="description"
-              >hey ho lets go</v-textarea>
+              ></v-textarea>
             </v-flex>
           </v-layout>
+
+
+          <v-layout row ma-0>
+            <v-flex class="text-center">
+              <v-date-picker></v-date-picker>
+            </v-flex>
+          </v-layout>
+          <v-layout row ma-0 my-5>
+            <v-flex class="text-center"></v-flex>
+          </v-layout>
+
           <v-layout row ma-0>
             <v-flex xs12 class="text-center">
               <v-btn type="submit" :disabled="!formIsValid">Create meetup</v-btn>
@@ -69,20 +80,20 @@ export default {
 
   methods: {
     onCreateMeetup() {
-      if(!this.formIsValid) {
+      if (!this.formIsValid) {
         return;
       }
       const meetup = {
-        id: 'random',
+        id: "random",
         title: this.title,
         location: this.location,
         imageURL: this.imageURL,
         desc: this.desc,
-        date: new Date(),
-      }
+        date: new Date()
+      };
 
-      this.$store.dispatch('createMeetup', meetup);
-      this.$router.push('/meetups');
+      this.$store.dispatch("createMeetup", meetup);
+      this.$router.push("/meetups");
     }
   },
 
@@ -100,9 +111,18 @@ export default {
 </script>
 
 <style>
+.picker {
+  height: 300px;
+}
+
 .createMeet {
   border-width: 3px;
   border-style: solid;
-  border-image: linear-gradient(to top, rgba(68, 66, 66, 0.507), rgba(0, 0, 0, 0)) 1 100%;
+  border-image: linear-gradient(
+      to top,
+      rgba(68, 66, 66, 0.507),
+      rgba(0, 0, 0, 0)
+    )
+    1 100%;
 }
 </style>
