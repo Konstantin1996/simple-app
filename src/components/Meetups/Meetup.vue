@@ -3,15 +3,20 @@
     <v-layout row wrap>
       <v-flex>
         <v-card>
-          <v-card-title>
-            {{meetup.title}}
-          </v-card-title>
-          <v-img
-            height="400px"
-            cover
-            :src="meetup.imageURL"
-          ></v-img>
-          <v-card-text>{{meetup.desc}}</v-card-text>
+          <v-card-title>{{meetup.title}}</v-card-title>
+          <v-img height="400px" cover :src="meetup.imageURL"></v-img>
+          <v-card-text>
+            <h2>Description</h2>
+            <p>{{meetup.desc}}</p>
+          </v-card-text>
+          <v-card-text>
+            <h2>Location</h2>
+            <p>{{meetup.location}}</p>
+          </v-card-text>
+          <v-card-text>
+            <h2>Date</h2>
+            <p>{{meetup.date}}</p>
+          </v-card-text>
           <v-card-actions>
             <v-btn>Register</v-btn>
             <v-spacer></v-spacer>
@@ -25,7 +30,7 @@
 
 <script>
 export default {
-  name: 'Meetup',
+  name: "Meetup",
 
   props: {
     id: String
@@ -33,10 +38,9 @@ export default {
 
   computed: {
     meetup() {
-      return this.$store.getters.loadMeetup(this.id)
+      return this.$store.getters.loadMeetup(this.id);
     }
   }
-
 };
 </script>
 

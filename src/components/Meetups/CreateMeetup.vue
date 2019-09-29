@@ -46,12 +46,20 @@
             </v-flex>
           </v-layout>
 
-
-          <v-layout row ma-0>
+          <v-layout row ma-1>
             <v-flex class="text-center">
-              <v-date-picker></v-date-picker>
+              <v-date-picker @input="onInputDate"></v-date-picker>
             </v-flex>
           </v-layout>
+          <p>{{date}}</p>
+
+          <v-layout row ma-1>
+            <v-flex class="text-center">
+              <v-time-picker format="24hr" @input="onInputTime"></v-time-picker>
+            </v-flex>
+          </v-layout>
+          <p>{{time}}</p>
+
           <v-layout row ma-0 my-5>
             <v-flex class="text-center"></v-flex>
           </v-layout>
@@ -74,7 +82,9 @@ export default {
       title: "",
       location: "",
       imageURL: "",
-      desc: ""
+      desc: "",
+      date: new Date(),
+      time: new Date(),
     };
   },
 
@@ -89,12 +99,22 @@ export default {
         location: this.location,
         imageURL: this.imageURL,
         desc: this.desc,
-        date: new Date()
+        date: this.time,
       };
 
       this.$store.dispatch("createMeetup", meetup);
       this.$router.push("/meetups");
+    },
+
+    onInputDate(date) {
+      this.date = new Date(date);
+    },
+
+    onInputTime(time) {
+      const hoursAndMinutes = time.split(':');
+      this.time = new Date(this.date.getYear(), this.date.getMonth(), this.date.getDate(), hoursAndMinutes[0], hoursAndMinutes[1], 0);
     }
+
   },
 
   computed: {
@@ -103,9 +123,16 @@ export default {
         this.title !== "" &&
         this.location !== "" &&
         this.imageURL !== "" &&
-        this.desc !== ""
+        this.desc !== "" &&
+        this.date !== "" &&
+        this.time !== ""
       );
-    }
+    },
+
+  },
+
+  formattedDate() {
+    return this.date;
   }
 };
 </script>
