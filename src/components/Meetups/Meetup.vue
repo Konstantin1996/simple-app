@@ -4,18 +4,20 @@
       <v-flex>
         <v-card>
           <v-card-title>
-            {{meetup.title}}
+            {{ meetup.title }}
           </v-card-title>
           <v-img
             height="400px"
             cover
             :src="meetup.imageURL"
           ></v-img>
-          <v-card-text>{{meetup.desc}}</v-card-text>
+          <v-card-text>{{ meetup.desc }}</v-card-text>
           <v-card-actions>
             <v-btn>Register</v-btn>
             <v-spacer></v-spacer>
-            <v-btn to="/meetups">Back</v-btn>
+            <v-btn to="/meetups">
+              Back
+            </v-btn>
           </v-card-actions>
         </v-card>
       </v-flex>

@@ -1,14 +1,14 @@
 <template>
   <v-app>
     <div>
-      <v-navigation-drawer fixed v-model="sideNav">
+      <v-navigation-drawer v-model="sideNav" fixed>
         <v-list-item-group color="primary">
-          <v-list-item :key="item.title" v-for="item in menuItems" router :to="item.link">
+          <v-list-item v-for="item in menuItems" :key="item.title" router :to="item.link">
             <v-list-item-icon>
-              <v-icon>{{item.icon}}</v-icon>
+              <v-icon>{{ item.icon }}</v-icon>
             </v-list-item-icon>
             <v-list-item-content>
-              <v-list-item-title>{{item.title}}</v-list-item-title>
+              <v-list-item-title>{{ item.title }}</v-list-item-title>
             </v-list-item-content>
           </v-list-item>
         </v-list-item-group>
@@ -17,13 +17,15 @@
       <v-toolbar class="teal lighten-3">
         <v-app-bar-nav-icon class="d-sm-none" @click="onClick"></v-app-bar-nav-icon>
         <v-toolbar-title>
-          <router-link to="/" tag="span" style="cursor: pointer">DevMeetUp</router-link>
+          <router-link to="/" tag="span" style="cursor: pointer">
+            DevMeetUp
+          </router-link>
         </v-toolbar-title>
         <v-spacer></v-spacer>
-        <v-toolbar-items :key="item.title" v-for="item in menuItems">
+        <v-toolbar-items v-for="item in menuItems" :key="item.title">
           <v-btn class="d-none d-sm-flex d-md-flex d-lg-flex" router :to="item.link" text>
-            <v-icon>{{item.icon}}</v-icon>
-            {{item.title}}
+            <v-icon>{{ item.icon }}</v-icon>
+            {{ item.title }}
           </v-btn>
         </v-toolbar-items>
       </v-toolbar>

@@ -10,26 +10,38 @@
         <form @submit.prevent="onCreateMeetup">
           <v-layout row ma-0>
             <v-flex mx-auto xs10 sm7 lg5>
-              <v-text-field v-model="title" name="title" label="Title" id="title" required></v-text-field>
-            </v-flex>
-          </v-layout>
-          <v-layout row ma-0>
-            <v-flex mx-auto xs10 sm7 lg5>
               <v-text-field
-                v-model="location"
-                name="location"
-                label="Location"
-                id="location"
+                id="title"
+                v-model="title"
+                name="title"
+                label="Title"
                 required
               ></v-text-field>
             </v-flex>
           </v-layout>
           <v-layout row ma-0>
             <v-flex mx-auto xs10 sm7 lg5>
-              <v-text-field v-model="imageURL" name="imageURL" label="URL" id="imageURL" required></v-text-field>
+              <v-text-field
+                id="location"
+                v-model="location"
+                name="location"
+                label="Location"
+                required
+              ></v-text-field>
             </v-flex>
           </v-layout>
-          <v-layout row v-if="imageURL" ma-0>
+          <v-layout row ma-0>
+            <v-flex mx-auto xs10 sm7 lg5>
+              <v-text-field
+                id="imageURL"
+                v-model="imageURL"
+                name="imageURL"
+                label="URL"
+                required
+              ></v-text-field>
+            </v-flex>
+          </v-layout>
+          <v-layout v-if="imageURL" row ma-0>
             <v-flex mx-auto xs10 sm7 lg5>
               <v-img contain :src="imageURL" alt="image" />
             </v-flex>
@@ -37,11 +49,11 @@
           <v-layout row ma-0>
             <v-flex mx-auto xs10 sm7 lg5>
               <v-textarea
+                id="description"
                 v-model="desc"
                 rows="10"
                 name="description"
                 label="Description"
-                id="description"
               ></v-textarea>
             </v-flex>
           </v-layout>
@@ -58,7 +70,9 @@
 
           <v-layout row ma-0>
             <v-flex xs12 class="text-center">
-              <v-btn type="submit" :disabled="!formIsValid">Create meetup</v-btn>
+              <v-btn type="submit" :disabled="!formIsValid">
+                Create meetup
+              </v-btn>
             </v-flex>
           </v-layout>
         </form>
@@ -78,6 +92,17 @@ export default {
     };
   },
 
+  computed: {
+    formIsValid() {
+      return (
+        this.title !== "" &&
+        this.location !== "" &&
+        this.imageURL !== "" &&
+        this.desc !== ""
+      );
+    }
+  },
+
   methods: {
     onCreateMeetup() {
       if (!this.formIsValid) {
@@ -94,17 +119,6 @@ export default {
 
       this.$store.dispatch("createMeetup", meetup);
       this.$router.push("/meetups");
-    }
-  },
-
-  computed: {
-    formIsValid() {
-      return (
-        this.title !== "" &&
-        this.location !== "" &&
-        this.imageURL !== "" &&
-        this.desc !== ""
-      );
     }
   }
 };
