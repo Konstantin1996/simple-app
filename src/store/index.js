@@ -12,7 +12,8 @@ export const store = new Vuex.Store({
                 id: "1",
                 title: "Meetup NY",
                 desc: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur, nobis! Ea omnis recusandae blanditiis ducimus quod nemo facere tempora at harum odit, porro necessitatibus asperiores.',
-                date: '2019-06-03'
+                date: new Date(),
+                location: 'Saint-Petersburg'
             },
             {
                 imageURL:
@@ -20,14 +21,16 @@ export const store = new Vuex.Store({
                 id: "2",
                 title: "Meetup California",
                 desc: ',Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur, nobis! Ea omnis recusandae blanditiis ducimus quod nemo facere tempora at harum odit, porro necessitatibus asperiores.',
-                date: '2019-06-03'
+                date: new Date(),
+                location: 'Saint-Petersburg'
             },
             {
                 imageURL: "https://www.akdmc.com/media/2822/russia.jpg",
                 id: "3",
                 title: "Meetup Russia",
                 desc: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur, nobis! Ea omnis recusandae blanditiis ducimus quod nemo facere tempora at harum odit, porro necessitatibus asperiores.',
-                date: '2019-06-03'
+                date: new Date(),
+                location: 'Saint-Petersburg'
             }
         ],
         user: {
