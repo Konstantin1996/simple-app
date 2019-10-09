@@ -139,8 +139,6 @@ export default {
       const hoursAndMinutes = time.split(':');
       this.time = new Date(this.date.getYear(), this.date.getMonth(), this.date.getDate(), hoursAndMinutes[0], hoursAndMinutes[1], 0);
     }
-<<<<<<< HEAD
-=======
 
   },
 
@@ -160,7 +158,6 @@ export default {
 
   formattedDate() {
     return this.date;
->>>>>>> 9ef024b9a10a3b8e1176c48b765a3c71cee2ff14
   }
 };
 </script>
