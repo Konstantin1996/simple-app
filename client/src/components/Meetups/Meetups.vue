@@ -12,7 +12,7 @@
           </v-flex>
           <v-flex class="d-flex flex-column" xs8 sm7 lg9>
             <v-card-title>{{ meetup.title }}</v-card-title>
-            <v-card-text>{{ meetup.desc }}</v-card-text>
+            <v-card-text>{{ showDescription(meetup.desc) }}</v-card-text>
             <v-card-actions class="align-self-end mt-auto">
               <v-btn :to="`/meetups/${meetup._id}`">
                 Show details
@@ -31,6 +31,8 @@
 import { mapActions, mapGetters } from 'vuex'
 import Spinner from '../Interface/Spinner/Spinner'
 
+const MAX_TEXT_SIZE = 200;
+
 export default {
   name: "Meetups",
 
@@ -47,11 +49,17 @@ export default {
     
     setImage(image) {
       return image || require('../../assets/defaultImage.png');
+    },
+    
+    showDescription(description) {
+      const textExceedLimit = description.length > MAX_TEXT_SIZE;
+      return textExceedLimit ? description.substring(0, 200) : description;
     }
   },
 
   computed: {
     ...mapGetters(['meetups']),
+
   },
 };
 </script>

@@ -2,7 +2,7 @@ import axios from 'axios'
 import Vue from 'vue'
 
 const state = {
-    meetups: []
+    data: [],
 };
 
 const actions = {
@@ -15,7 +15,6 @@ const actions = {
     async fetchSingleMeetup({ commit }, id) {
         commit('SET_LOADING_TRUE');
         const singleMeetup = await axios.get(`http://localhost:5000/api/meetups/${id}`);
-        console.log(singleMeetup);
         commit('setSingleMeetup', singleMeetup.data);
         commit('SET_LOADING_FALSE');
     },
@@ -36,33 +35,29 @@ const actions = {
 const mutations = {
 
     setMeetups(state, payload) {
-        state.meetups = payload;
+        state.data = payload;
     },
 
     setSingleMeetup(state, payload) {
-        Vue.set(state, 'meetups', payload);
-        // state.meetups.push(payload); 
+        Vue.set(state, 'data', payload);
     },
 
     createMeetupMutation(state, payload) {  
-        state.meetups.push(payload);
+        state.data.push(payload);
     }       
 };
 
 const getters = {
     meetups(state) {
-        return state.meetups;
+        return state.data;
     },
 
     featuredMeetups(state, getters) {
-        return getters.meetups.slice(0,3)
+        return getters.data.slice(0,3)
     },
 
     singleMeetup(state) {
         return state.meetups;
-        // return (id) => {
-        //     return state.meetups.find((meetup) => meetup.id === id);
-        // }
     }
 }
 
