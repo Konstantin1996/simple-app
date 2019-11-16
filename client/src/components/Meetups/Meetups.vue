@@ -8,32 +8,51 @@
           class="d-flex mt-3 purple grey lighten-3"
         >
           <v-flex xs4 sm5 lg3>
-            <v-img height="200px" cover :src="meetup.imageURL"></v-img>
+            <v-img height="200px" contain :src="setImage(meetup.imageURL)"></v-img>
           </v-flex>
           <v-flex class="d-flex flex-column" xs8 sm7 lg9>
             <v-card-title>{{ meetup.title }}</v-card-title>
             <v-card-text>{{ meetup.desc }}</v-card-text>
             <v-card-actions class="align-self-end mt-auto">
-              <v-btn :to="`/meetups/${meetup.id}`">
+              <v-btn :to="`/meetups/${meetup._id}`">
                 Show details
               </v-btn>
             </v-card-actions>
           </v-flex>
         </v-card>
+        <Spinner/>
       </v-flex>
     </v-layout>
   </v-container>
 </template>
 
 <script>
+
+import { mapActions, mapGetters } from 'vuex'
+import Spinner from '../Interface/Spinner/Spinner'
+
 export default {
   name: "Meetups",
 
-  computed: {
-    meetups() {
-      return this.$store.getters.loadedMeetups;
+  mounted() {
+    this.fetchMeetups();
+  },
+
+  components: {
+    Spinner
+  },
+
+  methods: {
+    ...mapActions(['fetchMeetups']),
+    
+    setImage(image) {
+      return image || require('../../assets/defaultImage.png');
     }
-  }
+  },
+
+  computed: {
+    ...mapGetters(['meetups']),
+  },
 };
 </script>
 
