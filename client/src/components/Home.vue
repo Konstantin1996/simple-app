@@ -2,14 +2,24 @@
   <v-container fluid>
     <v-flex class="mx-auto my-10" lg8 xs12>
       <v-layout>
-          <v-carousel>
+          <v-carousel 
+            :interval="3000" 
+            show-arrows 
+            hide-delimiters 
+            cycle
+            light
+            prev-icon="mdi-arrow-left" 
+            next-icon="mdi-arrow-right"
+          >
             <v-carousel-item
-              v-for="(meetup, i) in meetups"
+              v-for="meetup in meetups"
               :key="meetup._id"
               @click="onLoadMeetup(meetup._id)"
             >
               <v-sheet
+                class="carousel"
                 height="100%"
+                width="100$"
                 tile
               >
                 <v-row
@@ -17,7 +27,7 @@
                   align="center"
                   justify="center"
                 >
-                  <img width="100%" height="100%" :src="meetup.imageURL" :alt="meetup.imageURL">
+                  <img height="100%" :src="meetup.imageURL" :alt="meetup.imageURL">
                 </v-row>
               </v-sheet>
             </v-carousel-item>
@@ -25,10 +35,10 @@
       </v-layout>
       <v-layout>
         <v-flex class="d-flex justify-center ma-3 flex-wrap" xs12>
-          <v-btn large class="red mx-5">
+          <v-btn class="mx-5" to="/meetups">
             EXPLORE MEETUPS
           </v-btn>
-          <v-btn large class="green mx-5">
+          <v-btn class="mx-5" to="/meetups/create">
             ORGANIZE MEETUPS
           </v-btn>
         </v-flex>
@@ -59,18 +69,51 @@ export default {
   }
 };
 </script>
-<style>
+<style lang="scss">
 
-.title {
-  margin: 0 auto;
-  text-align: center;
-  color: black;
-  background: rgba(36, 33, 33, 0.199);
+button {
+  background: rgb(255, 163, 127) !important;
 }
-.block-1 {
-  background: goldenrod;
+
+.carousel {
+  background: transparent !important;
 }
-.block-2 {
-  background: seagreen;
+
+.mdi-arrow-left {
+  position: relative;
+
+  &:after {
+    content: '';
+    position: absolute;
+    left: 7px;
+    border: 5px solid;
+    width: 15px !important;
+    height: 15px !important;
+    border-color: 
+    black
+    black
+    transparent
+    transparent;
+    transform: rotate(-135deg);
+  }
 }
+
+.mdi-arrow-right {
+  position: relative;
+  &:after {
+    content: '';
+    position: absolute;
+    right: 7px;
+    border: 5px solid;
+    width: 15px !important;
+    height: 15px !important;
+    border-color: 
+    black
+    black
+    transparent
+    transparent;
+    transform: rotate(45deg);
+  }
+}
+
 </style>
