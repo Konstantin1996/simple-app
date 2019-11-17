@@ -14,7 +14,7 @@
         </v-list-item-group>
       </v-navigation-drawer>
 
-      <v-toolbar class="teal lighten-3">
+      <v-toolbar class="menu">
         <v-app-bar-nav-icon class="d-sm-none" @click="onClick"></v-app-bar-nav-icon>
         <v-toolbar-title>
           <router-link to="/" tag="span" style="cursor: pointer">
@@ -62,3 +62,9 @@ export default {
   }
 };
 </script>
+
+<style>
+  .menu {
+    background: linear-gradient(120deg, rgba(0,152,132,1) 0%, rgba(222,64,17,0.6533963927367823) 35%, rgba(233,148,178,1) 73%) !important;
+  }
+</style>

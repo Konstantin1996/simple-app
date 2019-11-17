@@ -1,14 +1,27 @@
 <template>
   <v-container fluid>
     <v-flex class="mx-auto my-10" lg8 xs12>
-      <v-layout row class="brown ma-0 pa-0">
-        <v-carousel dark>
-          <v-carousel-item v-for="(meetup, i) in meetups" :key="i" :src="meetup.src" @click="onLoadMeetup(meetup.id)">
-            <div class="title">
-              <p>{{ meetup.title }}</p>
-            </div>
-          </v-carousel-item>
-        </v-carousel>
+      <v-layout>
+          <v-carousel>
+            <v-carousel-item
+              v-for="(meetup, i) in meetups"
+              :key="meetup._id"
+              @click="onLoadMeetup(meetup._id)"
+            >
+              <v-sheet
+                height="100%"
+                tile
+              >
+                <v-row
+                  class="fill-height"
+                  align="center"
+                  justify="center"
+                >
+                  <img width="100%" height="100%" :src="meetup.imageURL" :alt="meetup.imageURL">
+                </v-row>
+              </v-sheet>
+            </v-carousel-item>
+      </v-carousel>
       </v-layout>
       <v-layout>
         <v-flex class="d-flex justify-center ma-3 flex-wrap" xs12>
@@ -25,16 +38,21 @@
 </template>
 
 <script>
+import { mapActions, mapGetters } from 'vuex'; 
+
 export default {
   name: "Home",
 
+  mounted() {
+    this.fetchMeetups();
+  },
+
   computed: {
-    meetups() {
-      return this.$store.getters.loadedMeetups;
-    }
+    ...mapGetters(['meetups', 'isSpinnerLoading']),
   },
 
   methods: {
+    ...mapActions(['fetchMeetups']),
     onLoadMeetup(id) {
       this.$router.push('meetups/'+id);
     }
@@ -42,9 +60,6 @@ export default {
 };
 </script>
 <style>
-h1 {
-  text-align: center;
-}
 
 .title {
   margin: 0 auto;

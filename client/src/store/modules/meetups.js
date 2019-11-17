@@ -1,5 +1,6 @@
 import axios from 'axios'
 import Vue from 'vue'
+import { SET_LOADING_FALSE, SET_LOADING_TRUE, SET_MEETUPS, SET_SINGLE_MEETUP } from '../types/types.js'
 
 const state = {
     data: [],
@@ -7,16 +8,17 @@ const state = {
 
 const actions = {
     async fetchMeetups({ state, commit, rootState}) {
+        commit(SET_LOADING_TRUE);
         const meetups = await axios.get('http://localhost:5000/api/meetups');
-        commit('setMeetups', meetups.data);
-        commit('SET_LOADING_FALSE');
+        commit(SET_MEETUPS, meetups.data);
+        commit(SET_LOADING_FALSE);
     },
 
     async fetchSingleMeetup({ commit }, id) {
-        commit('SET_LOADING_TRUE');
+        commit(SET_LOADING_TRUE);
         const singleMeetup = await axios.get(`http://localhost:5000/api/meetups/${id}`);
-        commit('setSingleMeetup', singleMeetup.data);
-        commit('SET_LOADING_FALSE');
+        commit(SET_SINGLE_MEETUP, singleMeetup.data);
+        commit(SET_LOADING_FALSE);
     },
 
     createMeetup({ commit }, payload) {
@@ -34,11 +36,11 @@ const actions = {
 
 const mutations = {
 
-    setMeetups(state, payload) {
+    [SET_MEETUPS](state, payload) {
         state.data = payload;
     },
 
-    setSingleMeetup(state, payload) {
+    [SET_SINGLE_MEETUP](state, payload) {
         Vue.set(state, 'data', payload);
     },
 
@@ -57,7 +59,7 @@ const getters = {
     },
 
     singleMeetup(state) {
-        return state.meetups;
+        return state.data;
     }
 }
 

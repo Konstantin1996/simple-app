@@ -1,5 +1,5 @@
 <template>
-  <v-container>
+  <v-container v-if="!isSpinnerLoading">
     <v-layout>
       <v-flex class="mx-auto" xs12>
         <v-card
@@ -20,10 +20,10 @@
             </v-card-actions>
           </v-flex>
         </v-card>
-        <Spinner/>
       </v-flex>
     </v-layout>
   </v-container>
+  <Spinner v-else/>
 </template>
 
 <script>
@@ -52,14 +52,13 @@ export default {
     },
     
     showDescription(description) {
-      const textExceedLimit = description.length > MAX_TEXT_SIZE;
-      return textExceedLimit ? description.substring(0, 200) : description;
+        const textExceedLimit = description.length > MAX_TEXT_SIZE;
+        return textExceedLimit ? description.substring(0, 200) : description;
     }
   },
 
   computed: {
-    ...mapGetters(['meetups']),
-
+    ...mapGetters(['meetups', 'isSpinnerLoading']),
   },
 };
 </script>
