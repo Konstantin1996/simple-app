@@ -22,11 +22,13 @@ router.get('/:id', async (req,res) => {
 router.post('/add', async (req,res) => {
     const meetups = await loadMeetupsCollection();
     console.log('POST');
+    console.log(req.body);
     await meetups.insertOne({
         "title": req.body.title,
+        "location": req.body.location,
+        "imageURL": req.body.imageURL,
         "desc": req.body.desc,
         "date": req.body.date,
-        "location": req.body.location,
     });
     res.sendStatus(201);
 });

@@ -57,21 +57,21 @@
               ></v-textarea>
             </v-flex>
           </v-layout>
+          <div class="date-container">
+            <v-layout row ma-1>
+              <v-flex class="text-center">
+                <v-date-picker @input="onInputDate"></v-date-picker>
+              </v-flex>
+            </v-layout>
+            <!-- <p>{{date}}</p> -->
 
-          <v-layout row ma-1>
-            <v-flex class="text-center">
-              <v-date-picker @input="onInputDate"></v-date-picker>
-            </v-flex>
-          </v-layout>
-          <p>{{date}}</p>
-
-          <v-layout row ma-1>
-            <v-flex class="text-center">
-              <v-time-picker format="24hr" @input="onInputTime"></v-time-picker>
-            </v-flex>
-          </v-layout>
-          <p>{{time}}</p>
-
+            <v-layout row ma-1>
+              <v-flex class="text-center">
+                <v-time-picker format="24hr" @input="onInputTime"></v-time-picker>
+              </v-flex>
+            </v-layout>
+            <!-- <p>{{time}}</p> -->
+          </div>
           <v-layout row ma-0 my-5>
             <v-flex class="text-center"></v-flex>
           </v-layout>
@@ -102,17 +102,6 @@ export default {
     };
   },
 
-  computed: {
-    formIsValid() {
-      return (
-        this.title !== "" &&
-        this.location !== "" &&
-        this.imageURL !== "" &&
-        this.desc !== ""
-      );
-    }
-  },
-
   methods: {
     onCreateMeetup() {
       if (!this.formIsValid) {
@@ -139,7 +128,6 @@ export default {
       const hoursAndMinutes = time.split(':');
       this.time = new Date(this.date.getYear(), this.date.getMonth(), this.date.getDate(), hoursAndMinutes[0], hoursAndMinutes[1], 0);
     }
-
   },
 
   computed: {
@@ -165,6 +153,10 @@ export default {
 <style>
 .picker {
   height: 300px;
+}
+
+.date-container {
+  display: flex;
 }
 
 

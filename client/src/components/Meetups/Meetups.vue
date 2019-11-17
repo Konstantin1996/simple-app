@@ -48,12 +48,15 @@ export default {
     ...mapActions(['fetchMeetups']),
     
     setImage(image) {
-      return image || require('../../assets/defaultImage.png');
+        return image || require('../../assets/defaultImage.png');
     },
     
     showDescription(description) {
-        const textExceedLimit = description.length > MAX_TEXT_SIZE;
-        return textExceedLimit ? description.substring(0, 200) : description;
+        // need to refactor typeError here
+        if(description) {
+          const textExceedLimit = description.length > MAX_TEXT_SIZE;
+          return textExceedLimit ? description.substring(0, 200) : description;
+        }
     }
   },
 

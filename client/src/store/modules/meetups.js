@@ -1,6 +1,6 @@
 import axios from 'axios'
 import Vue from 'vue'
-import { SET_LOADING_FALSE, SET_LOADING_TRUE, SET_MEETUPS, SET_SINGLE_MEETUP } from '../types/types.js'
+import { SET_LOADING_FALSE, SET_LOADING_TRUE, SET_MEETUPS, SET_SINGLE_MEETUP, CREATE_MEETUP } from '../types/types.js'
 
 const state = {
     data: [],
@@ -21,16 +21,18 @@ const actions = {
         commit(SET_LOADING_FALSE);
     },
 
-    createMeetup({ commit }, payload) {
+    async createMeetup({ commit }, payload) {
         const meetup = {
-            id: payload.id,
             title: payload.title,
             location: payload.location,
             imageURL: payload.imageURL,
             desc: payload.desc,
             date: payload.date,
         }
-        commit('createMeetupMutation', meetup);
+        
+        await axios.post('http://localhost:5000/api/meetups/add', meetup);
+
+        commit(CREATE_MEETUP, meetup);
     }
 };
 
@@ -44,7 +46,7 @@ const mutations = {
         Vue.set(state, 'data', payload);
     },
 
-    createMeetupMutation(state, payload) {  
+    [CREATE_MEETUP](state, payload) {  
         state.data.push(payload);
     }       
 };
