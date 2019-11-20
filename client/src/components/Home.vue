@@ -71,10 +71,6 @@ export default {
 </script>
 <style lang="scss">
 
-button {
-  background: rgb(255, 163, 127) !important;
-}
-
 .carousel {
   background: transparent !important;
 }
