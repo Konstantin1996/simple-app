@@ -1,6 +1,6 @@
 import axios from 'axios'
 import Vue from 'vue'
-import { SET_LOADING_FALSE, SET_LOADING_TRUE, SET_MEETUPS, SET_SINGLE_MEETUP, CREATE_MEETUP } from '../types/types.js'
+import { SET_LOADING_FALSE, SET_LOADING_TRUE, SET_MEETUPS, SET_SINGLE_MEETUP, CREATE_MEETUP, FILTER_MEETUP} from '../types/types.js'
 
 const state = {
     data: [],
@@ -33,6 +33,14 @@ const actions = {
         await axios.post('http://localhost:5000/api/meetups/add', meetup);
 
         commit(CREATE_MEETUP, meetup);
+    },
+
+    async filterMeetups({commit}, payload) {
+    
+        const filteredMeetup = await axios.get(`http://localhost:5000/api/meetups/filter/${payload}`);
+
+        commit(FILTER_MEETUP, filteredMeetup.data);
+        // console.log(filteredMeetup);
     }
 };
 
@@ -48,7 +56,11 @@ const mutations = {
 
     [CREATE_MEETUP](state, payload) {  
         state.data.push(payload);
-    }       
+    },
+    
+    [FILTER_MEETUP](state, payload) {
+        state.data = [...payload];
+    }
 };
 
 const getters = {

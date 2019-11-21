@@ -42,6 +42,14 @@ exports.update_meetup =  async (req,res) => {
     res.json({ secret: req.params.id });
 }
 
+exports.filter_meetups = async (req,res) => {
+    const meetups = await loadMeetupsCollection();
+    const searchedMeet = await meetups.find({ title: new RegExp(req.params.expr)}).toArray();
+    console.log(searchedMeet);
+    res.send(searchedMeet);
+}
+
+
 async function loadMeetupsCollection() {
     const client = await mongodb.MongoClient.connect('\mongodb+srv://konstantin:fahrenheit21101996@cluster0-kqqam.mongodb.net/test?retryWrites=true&w=majority', {
         useNewUrlParser: true,

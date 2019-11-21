@@ -60,14 +60,14 @@
           <div class="date-container">
             <v-layout row ma-1>
               <v-flex class="text-center">
-                <v-date-picker @input="onInputDate"></v-date-picker>
+                <v-date-picker class="date" @input="onInputDate"></v-date-picker>
               </v-flex>
             </v-layout>
             <!-- <p>{{date}}</p> -->
 
             <v-layout row ma-1>
               <v-flex class="text-center">
-                <v-time-picker format="24hr" @input="onInputTime"></v-time-picker>
+                <v-time-picker class="time" format="24hr" @input="onInputTime"></v-time-picker>
               </v-flex>
             </v-layout>
             <!-- <p>{{time}}</p> -->
@@ -150,13 +150,24 @@ export default {
 };
 </script>
 
-<style>
+<style lang="scss">
 .picker {
   height: 300px;
 }
 
 .date-container {
   display: flex;
+}
+
+
+@media(max-width: 950px) {
+  .date-container {
+    flex-direction: column;
+
+    & .date {
+        margin: 20px;
+    }
+  }
 }
 
 

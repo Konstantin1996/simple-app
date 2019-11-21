@@ -1,5 +1,6 @@
 <template>
   <v-container v-if="!isSpinnerLoading">
+    <SearchPanel/>
     <v-layout>
       <v-flex class="mx-auto" xs12>
         <v-card
@@ -30,6 +31,7 @@
 
 import { mapActions, mapGetters } from 'vuex'
 import Spinner from '../Interface/Spinner/Spinner'
+import SearchPanel from './SearchPanel'
 
 const MAX_TEXT_SIZE = 200;
 
@@ -41,7 +43,8 @@ export default {
   },
 
   components: {
-    Spinner
+    Spinner,
+    SearchPanel
   },
 
   methods: {

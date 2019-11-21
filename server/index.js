@@ -2,9 +2,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const app = express();
-const meetups = require('./routes/api/meetups');
-
-
+const meetupsRouter = require('./routes/api/meetups');
 
 const timer = function (req, res, next) {
     const time = new Date().toLocaleTimeString();
@@ -17,8 +15,7 @@ app.use(bodyParser.json());
 app.use(cors());
 app.use(timer);
 
-
-app.use('/api/meetups', meetups);
+app.use('/api/meetups', meetupsRouter);
 
 const port = process.env.PORT || 5000;
 
