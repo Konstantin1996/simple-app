@@ -2,7 +2,7 @@ const mongodb = require('mongodb');
 
 exports.get_list_meetup = async (req,res) => {
     const meetups = await loadMeetupsCollection();
-    res.send(await meetups.find({}).toArray()); 
+    res.send(await meetups.find({}).toArray());
 }
 
 exports.get_single_meetup = async (req,res) => {
@@ -42,13 +42,12 @@ exports.update_meetup =  async (req,res) => {
     res.json({ secret: req.params.id });
 }
 
-exports.filter_meetups = async (req,res) => {
+exports.filter_meetups = async (req,res) => { 
     const meetups = await loadMeetupsCollection();
+    // if req.params.expr is empty than db return all the meetups
     const searchedMeet = await meetups.find({ title: new RegExp(req.params.expr)}).toArray();
-    console.log(searchedMeet);
-    res.send(searchedMeet);
+    res.send(searchedMeet);    
 }
-
 
 async function loadMeetupsCollection() {
     const client = await mongodb.MongoClient.connect('\mongodb+srv://konstantin:fahrenheit21101996@cluster0-kqqam.mongodb.net/test?retryWrites=true&w=majority', {

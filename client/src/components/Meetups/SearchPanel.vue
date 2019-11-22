@@ -13,9 +13,7 @@ export default {
         ...mapActions(['filterMeetups']),
 
         onInputText(value) {
-            if(value.length > 2) { 
                 this.filterMeetups(value)
-            }
         }
     }
 }

@@ -40,8 +40,11 @@ const actions = {
         const filteredMeetup = await axios.get(`http://localhost:5000/api/meetups/filter/${payload}`);
 
         commit(FILTER_MEETUP, filteredMeetup.data);
-        // console.log(filteredMeetup);
-    }
+    },
+
+    async sortByDate({ commit }) {
+        // toDoSorting
+    } 
 };
 
 const mutations = {

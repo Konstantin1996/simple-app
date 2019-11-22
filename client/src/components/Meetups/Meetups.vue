@@ -4,8 +4,8 @@
     <v-layout>
       <v-flex class="mx-auto" xs12>
         <v-card
-          v-for="meetup in meetups"
           :key="meetup.id"
+          v-for="meetup in meetups"
           class="d-flex mt-3 purple grey lighten-3"
         >
           <v-flex xs4 sm5 lg3>
@@ -14,6 +14,7 @@
           <v-flex class="d-flex flex-column" xs8 sm7 lg9>
             <v-card-title>{{ meetup.title }}</v-card-title>
             <v-card-text>{{ showDescription(meetup.desc) }}</v-card-text>
+            <v-card-text>Date: {{ meetup.date | formatDate }}</v-card-text>
             <v-card-actions class="align-self-end mt-auto">
               <v-btn :to="`/meetups/${meetup._id}`">
                 Show details
@@ -66,6 +67,12 @@ export default {
   computed: {
     ...mapGetters(['meetups', 'isSpinnerLoading']),
   },
+
+  filters: {
+    formatDate: function(value) {
+      return new Date(value).toDateString();
+    }
+  }
 };
 </script>
 
